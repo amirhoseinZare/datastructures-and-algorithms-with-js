@@ -37,6 +37,31 @@ class LinkedList {
         }
     }
 
+    delete(value){
+
+        while(this.head && this.head.value===value){
+            this.head = this.head.next
+        }
+
+        if(!this.head){
+            return -1
+        }
+
+        let current = this.head;
+        while(current.next){
+            if(current.next.value === value){
+                current.next = current.next.next
+            } else{
+                current = current.next
+            }
+        }
+
+        if(this.tail.value === value){
+            this.tail = current
+        }
+
+    }
+
     toArray(){
 
         const elements = []
@@ -55,18 +80,21 @@ class LinkedList {
 
 const linkedList = new LinkedList()
 
-linkedList.prepend(8)
-linkedList.append(1)
-linkedList.append(2)
-linkedList.prepend(3)
-linkedList.append(4)
-linkedList.prepend(5)
+linkedList.append(9)
+linkedList.append(10)
+linkedList.append(10)
+
 const obj = linkedList.toArray()
 
-console.log(obj)
-console.log(obj[0].next === obj[1])
-console.log(obj[0].next.next === obj[2])
-console.log(obj[1].next === obj[2])
-console.log(obj[3].next === obj[4])
-console.log(obj[0].next.next.next.next.next === obj[5])
-console.log(obj[1].next.next.next.next === obj[5])
+// console.log(obj)
+// console.log(obj[0].next === obj[1])
+// console.log(obj[0].next.next === obj[2])
+// console.log(obj[1].next === obj[2])
+// console.log(obj[3].next === obj[4])
+// console.log(obj[0].next.next.next.next.next === obj[5])
+// console.log(obj[1].next.next.next.next === obj[5])
+
+console.log(linkedList.toArray())
+// linkedList.delete(10)
+console.log(linkedList.toArray())
+console.log(linkedList.find(11))
