@@ -62,6 +62,20 @@ class LinkedList {
 
     }
 
+    find(value){
+        let current = this.head
+        if(!this.head){
+            return -1
+        }
+        while(current){
+            if(current.value === value){
+                return current
+            }
+            current = current.next
+        }
+        return -1
+    }
+
     toArray(){
 
         const elements = []
