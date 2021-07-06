@@ -93,9 +93,32 @@ class LinkedList {
     insertAfter(value, nextValue){
         const foundEle = this.find(value)
         if(foundEle===-1)
-            return -1
+            return false
         const nextEle = foundEle.next
         foundEle.next = { value:nextValue, next:nextEle }
+        return true
+    }
+
+    insertBefore(value, beforeValue) {
+        const foundEle = this.find(value)
+        if(foundEle===-1)
+            return false
+        const element = { value:beforeValue, next:null }
+        if(this.head.value === value){
+            element.next = this.head
+            this.head = element
+            return true
+        }
+        let current = this.head
+        while(current){
+            if(current.next.value === value){
+                const lastNext = current.next
+                current.next = element
+                current.next.next = lastNext
+                return true
+            }
+            current = current.next
+        }
     }
 }
 
@@ -122,3 +145,6 @@ console.log(linkedList.toArray())
 console.log(linkedList.find(11))
 console.log(linkedList.insertAfter(9, 15))
 console.log(linkedList.toArray())
+linkedList.insertBefore(10, 1)
+console.log(linkedList.toArray())
+// 9 15 1 10 7
