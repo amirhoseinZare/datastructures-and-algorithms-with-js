@@ -89,6 +89,14 @@ class LinkedList {
 
         return elements
     }
+
+    insertAfter(value, nextValue){
+        const foundEle = this.find(value)
+        if(foundEle===-1)
+            return -1
+        const nextEle = foundEle.next
+        foundEle.next = { value:nextValue, next:nextEle }
+    }
 }
 
 
@@ -96,7 +104,7 @@ const linkedList = new LinkedList()
 
 linkedList.append(9)
 linkedList.append(10)
-linkedList.append(10)
+linkedList.append(7)
 
 const obj = linkedList.toArray()
 
@@ -112,3 +120,5 @@ console.log(linkedList.toArray())
 // linkedList.delete(10)
 console.log(linkedList.toArray())
 console.log(linkedList.find(11))
+console.log(linkedList.insertAfter(9, 15))
+console.log(linkedList.toArray())
